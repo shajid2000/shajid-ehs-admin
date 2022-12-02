@@ -21,6 +21,8 @@ import OrderStatus from "./OrderStatus/OrderStatus";
 import addMaterail from "./Add Material/addMaterail";
 import "./App.css";
 import Addimage from "./Add Image/Addimage";
+import print from "./Printing/print";
+import Uniqueid from "./UniqueId/uniqueid";
 
 function App() {
   return (
@@ -53,6 +55,8 @@ function App() {
               <Route path ="/vendors" component = {Vendors} />
               <Route path ="/addmaterial" component = {addMaterail} />
               <Route path ="/addimage" component = {Addimage} />
+              <Route path ="/print" component = {print} />
+              <Route path ="/uniqueid" component = {Uniqueid} />
             </Switch>
           </div>
         </div>

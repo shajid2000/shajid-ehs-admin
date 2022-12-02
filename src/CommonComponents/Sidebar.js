@@ -29,6 +29,8 @@ function Sidebar() {
                 <Link style={linkStyle} to='/settings'><p>SETTINGS</p></Link>
                 <Link style={linkStyle} to='/addmaterial'><p>Add MAT & DIM</p></Link>
                 <Link style={linkStyle} to='/addimage'><p>Add Image</p></Link>
+                {/* <Link style={linkStyle} to='/print'><p>Printing Detail</p></Link> */}
+                <Link style={linkStyle} to='/uniqueid'><p>Generate Id</p></Link>
            </div> 
     </div>
 
