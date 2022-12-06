@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { API } from '../backend';
+import axios from 'axios';
 import "./print.css"
 
 function Print() {
     const [click, setClick] = useState(false);
     const [hider, setHider] = useState(Number);
+    const [ordersData, setOrdersData] = useState([]);
     const status = ["NOUSE",
         "INITIATED",
         "FAILED",
@@ -2136,22 +2139,35 @@ function Print() {
             }
         ]
     }
+    useEffect(() => {
+        const getOrdersData = async () => {
+            await axios
+                .get(`${API}/orders/getOrdersAdmin`)
+                .then((response) => setOrdersData(response.data.data))
+                .catch((error) => {
+                    console.log(error);
+                });
+        };
+        getOrdersData();
+        console.log(ordersData);
+    }, []);
+    console.log(ordersData)
     return (
         <>
-            {myAns.data.map((item, i) => {
+            {ordersData.map((item, i) => {
                 return <div key={i}>
                     <div className="order">
                         <p>OrderId- {item.orderId}</p>
-                        <p>ProductName- {item.itemDetails[0].poster_details.name}</p>
+                        <p className='ProductName'>ProductName- {item.itemDetails[0].poster_details.name}</p>
                         <p>Payment Status- {status[item.paymentStatus]}</p>
-                        <p>Date - 12/12/22</p>
-                        <span
+                        <p>Date - {item.created_at.split("T")[0]}</p>
+                        <span style={{cursor:"pointer"}}
                             onClick={() => {
                                 setClick(!click);
                                 setHider(i)
                             }}
                         >
-                            {    hider == i ? (!click ? "view" : "close"):"view"}
+                            {hider == i ? (!click ? "view" : "close") : "view"}
                         </span>
 
                     </div>
@@ -2159,12 +2175,13 @@ function Print() {
                         hider == i && click && (
                             <div className="each-que-ans">
 
-                                <div> <p>Material - 34 X 35 </p>
-                                    <p>Ome Drive link - 34 X 35fdgfjsddsjdsdjdfffffffffdfjiiiiiiiiilllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll </p>
+                                <div><p>Material - {item.itemDetails[0].materialDimension.material_title} </p>
+                                     <p>Dimension - {item.itemDetails[0].materialDimension.dimension_title} </p>
+                                    <p>One Drive link - {item.oneDriveLink?item.oneDriveLink:"Not Provided"}</p>
                                     <p>Quantity - {item.itemDetails[0].quantity}</p>
                                     <p>Total Price - {item.sumPriceToPay}</p>
-                                    </div>
-                                <img src={item.itemDetails[0].poster_details.imgUrl}></img>
+                                </div>
+                                <img className='img' style={{width: "400px",height:"400px"}} alt="No Img"   src={item.itemDetails[0].poster_details.imgUrl}></img>
                             </div>
                         )
                     }
