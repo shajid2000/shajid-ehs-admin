@@ -136,7 +136,7 @@ if(data[i][5]=="English"){
 if(data[i][5]=="Hindi"){
   insertObj.language= 2
 }
-if(data[i][5]=="Bilinguale"){
+if(data[i][5]=="Bilingual"){
   insertObj.language= 3
 }
 if(data[i][5]=="Marathi"){
