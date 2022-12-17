@@ -2175,8 +2175,8 @@ function Print() {
                         hider == i && click && (
                             <div className="each-que-ans">
 
-                                <div><p>Material - {item.itemDetails[0].materialDimension.material_title} </p>
-                                     <p>Dimension - {item.itemDetails[0].materialDimension.dimension_title} </p>
+   <div><p>Material - {item.itemDetails[0].materialDimension!=null && item.itemDetails[0].materialDimension.material_title?item.itemDetails[0].materialDimension.material_title:"Not Avilaible"} </p>
+                                     <p>Dimension - {item.itemDetails[0].materialDimension!=null && item.itemDetails[0].materialDimension.dimension_title?item.itemDetails[0].materialDimension.dimension_title:"Not Avilaible"} </p>
                                     <p>One Drive link - {item.oneDriveLink?item.oneDriveLink:"Not Provided"}</p>
                                     <p>Quantity - {item.itemDetails[0].quantity}</p>
                                     <p>Total Price - {item.sumPriceToPay}</p>

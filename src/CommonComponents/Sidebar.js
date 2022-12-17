@@ -31,6 +31,7 @@ function Sidebar() {
                 <Link style={linkStyle} to='/addimage'><p>Add Image</p></Link>
                 <Link style={linkStyle} to='/print'><p>Printing Detail</p></Link>
                 <Link style={linkStyle} to='/uniqueid'><p>Generate Id</p></Link>
+                <Link style={linkStyle} to='/uploadBulk'><p>Bulk Upload</p></Link>
            </div> 
     </div>
 

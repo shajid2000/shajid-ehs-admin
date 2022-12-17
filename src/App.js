@@ -23,6 +23,7 @@ import "./App.css";
 import Addimage from "./Add Image/Addimage";
 import print from "./Printing/print";
 import Uniqueid from "./UniqueId/uniqueid";
+import SpreadSheet from "./Upload Bulk/SpreadSheet";
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
               <Route path ="/addimage" component = {Addimage} />
               <Route path ="/print" component = {print} />
               <Route path ="/uniqueid" component = {Uniqueid} />
+              <Route path ="/uploadBulk" component = {SpreadSheet} />
             </Switch>
           </div>
         </div>
