@@ -42,6 +42,7 @@ function EditProduct() {
   const [discountTypeEdit, setDiscountTypeEdit] = useState();
   const [discountValue, setDiscountValue] = useState();
   const [fields, setFields] = useState(0);
+  const [editLanCon, seteditLanCon] = useState("");
   const [productUpdatedSnackbarOpen, setProductUpdatedSnackbarOpen] =
     useState(false);
   const [materialUpdatedSnackbarOpen, setMaterialUpdatedSnackbarOpen] =
@@ -350,7 +351,8 @@ function EditProduct() {
     e.preventDefault();
 
     console.log(category, subCategory, author, imgUrl,tagsEdit);
-    let updproductDetails = {
+    let updproductDetails ={}
+      updproductDetails = {
       poster_obj_id: productId,
       name: name,
       category: category,
@@ -369,9 +371,14 @@ function EditProduct() {
       discount_type: discountTypeEdit,
       discountValue: discountValue,
       operationType: 3,
+    
     };
+    if(editLanCon != ""){
+      console.log(editLanCon)
+     updproductDetails.languageConnecter = editLanCon
+    }
 
-    console.log(productDetails, "yesssss");
+    console.log(updproductDetails, "yesssss");
 
     await axios
       .post(`${API}/posters/updatePoster`, updproductDetails)
@@ -395,6 +402,10 @@ function EditProduct() {
     setMaterialCreatedSnackbarOpen(false);
   };
 
+  useEffect(() => {
+console.log(editLanCon)
+  }, [editLanCon])
+  
   return (
     <div className="add__product__body">
       <div className="add__product__header">
@@ -911,6 +922,13 @@ function EditProduct() {
                       <label for="language">Language:</label>
                       <br />
                       <select id="language" />
+                    </div>
+                    <div>
+                      <label for="poster">LanguageConnector:</label>
+                      <br />
+                      <input id="poster" type="text" value={editLanCon?editLanCon:""} onChange={(e)=>{
+                        seteditLanCon(e.target.value)
+                      }} />
                     </div>
                   </div>
                 </div>
