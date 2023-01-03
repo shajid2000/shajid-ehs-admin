@@ -30,11 +30,11 @@ const SpreadSheet = () => {
       let insertObj = {}
       insertObj.name = data[i][1]
       let a = data[i][12]
-      let b = a.split(':')
+      let b = a?.split(':')
       // ===============M====================
       // console.log(b)
       let material = []
-      for (let i = 0; i < b.length; i++) {
+      for (let i = 0; i < b?.length; i++) {
         if (b[i].includes("_")) {
           // console.log(b[i])
           material.push(b[i].split(', ')[0])
