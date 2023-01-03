@@ -2158,7 +2158,13 @@ function Print() {
                 return <div key={i}>
                     <div className="order">
                         <p>OrderId- {item.orderId}</p>
-                        <p className='ProductName'>ProductName- {item.itemDetails[0].poster_details.name}</p>
+                       {item.itemDetails[0].poster_details == undefined ? (
+                <p className="ProductName">Poster is not Avilaible</p>
+              ) : (
+                <p className="ProductName">
+                  ProductName- {item.itemDetails[0].poster_details.name}
+                </p>
+              )}
                         <p>Payment Status- {status[item.paymentStatus]}</p>
                         <p>Date - {item.created_at.split("T")[0]}</p>
                         <span style={{cursor:"pointer"}}
