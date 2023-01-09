@@ -205,12 +205,11 @@ const SpreadSheet = () => {
       }
       insertObj.authors = authId;
       // +++++++++++++++++++++++++Author================
-      // langConnector
-      insertObj.languageConnecter = data[i][33];
-      insertObj.MOQ = data[i][34];
+
       finalData.push(insertObj);
       let oneDrive = [];
       for (let o = 16; o <= 32; o++) {
+        console.log(o);
         if (data[i][o] != undefined) {
           oneDrive.push(data[i][o]);
         } else {
@@ -219,6 +218,20 @@ const SpreadSheet = () => {
       }
       // console.log(oneDrive)
       insertObj.orginal_one_drive_link = oneDrive;
+
+      // langConnector
+      insertObj.languageConnecter = data[i][36];
+      // =================tag=====================
+      let moq = [];
+      if (data[i][38] != undefined) {
+        moq = data[i][38].split(", ");
+      }
+      insertObj.MOQ = moq;
+
+      console.log("insertObj.MOQ moq :>> ", moq, data[i]);
+
+      insertObj.thumbnailUrl = data[i][39];
+
       // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
       if (u) {
         const res = await fetch(`${API}/posters/createPoster`, {
