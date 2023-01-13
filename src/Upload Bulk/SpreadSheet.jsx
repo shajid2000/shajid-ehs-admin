@@ -223,10 +223,18 @@ const SpreadSheet = () => {
       insertObj.languageConnecter = data[i][36];
       // =================tag=====================
       let moq = [];
-      if (data[i][38] != undefined) {
+      if (data[i][38] !== undefined) {
         moq = data[i][38].split(", ");
       }
-      insertObj.MOQ = moq;
+      function sliceIntoChunks(arr, chunkSize) {
+        const res = [];
+        for (let i = 0; i < arr.length; i += chunkSize) {
+          const chunk = arr.slice(i, i + chunkSize);
+          res.push(chunk);
+        }
+        return res;
+      }
+      insertObj.MOQ = sliceIntoChunks(moq, 4);
 
       console.log("insertObj.MOQ moq :>> ", moq, data[i]);
 
