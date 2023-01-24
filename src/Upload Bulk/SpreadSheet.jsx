@@ -224,17 +224,16 @@ const SpreadSheet = () => {
       // =================tag=====================
       let moq = [];
       if (data[i][38] !== undefined) {
-        moq = data[i][38].split(", ");
-      }
-      function sliceIntoChunks(arr, chunkSize) {
+        let arr = data[i][38].split(" | ");
         const res = [];
-        for (let i = 0; i < arr.length; i += chunkSize) {
-          const chunk = arr.slice(i, i + chunkSize);
+        for (let i = 0; i < arr.length; i++) {
+          const chunk = arr[i].split(", ");
           res.push(chunk);
         }
-        return res;
+        moq = res;
       }
-      insertObj.MOQ = sliceIntoChunks(moq, 4);
+      
+      insertObj.MOQ = moq;
 
       console.log("insertObj.MOQ moq :>> ", moq, data[i]);
 
