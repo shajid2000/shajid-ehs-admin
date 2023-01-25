@@ -219,8 +219,20 @@ const SpreadSheet = () => {
       // console.log(oneDrive)
       insertObj.orginal_one_drive_link = oneDrive;
 
+      // color
+      insertObj.color = data[i][33];
+
+      // colorConnector
+      insertObj.colorConnecter = data[i][34];
+
+      // cnd
+      insertObj.cnd = data[i][35];
+
+      // cndConnector
+      insertObj.cndConnecter = data[i][36];
+
       // langConnector
-      insertObj.languageConnecter = data[i][36];
+      insertObj.languageConnecter = data[i][37];
       // =================tag=====================
       let moq = [];
       if (data[i][38] !== undefined) {
@@ -232,7 +244,7 @@ const SpreadSheet = () => {
         }
         moq = res;
       }
-      
+
       insertObj.MOQ = moq;
 
       console.log("insertObj.MOQ moq :>> ", moq, data[i]);
