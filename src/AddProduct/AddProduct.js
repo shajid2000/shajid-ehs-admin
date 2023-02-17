@@ -63,18 +63,33 @@ function AddProduct() {
       });
   };
 
+  useEffect(() => {
+    setSubCategoryOptions();
+  },[category])
+
   //set option for sub-category
   const setSubCategoryOptions = async () => {
     await axios
       .get(`${API}/subCategory/getSubCategory`)
       .then((response) => {
+        // console.log("Response ===> " , response);
         let subCategories = [];
         for (var i = 0; i < response.data.data.length; i++) {
-          let item = {
-            name: response.data.data[i].title,
-            id: response.data.data[i]._id,
-          };
-          subCategories.push(item);
+          if (category[0]) {
+            if (category[0] == String(response.data.data[i].categoryId)){
+              let item = {
+                name: response.data.data[i].title,
+                id: response.data.data[i]._id,
+              };
+              subCategories.push(item);    
+            }
+          }else {
+            let item = {
+              name: response.data.data[i].title,
+              id: response.data.data[i]._id,
+            };
+            subCategories.push(item);
+          }
         }
         setSubCatOptions(subCategories);
       })
